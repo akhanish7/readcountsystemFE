@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class='maincontainer'>
+  <form method="post">
+    <div class="imgcontainer">
+      <img src="../../../../assets/images/login.jpeg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" [(ngModel)]="username" name="username" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" [(ngModel)]="password" name="password" required>
+
+      <button type="submit" (click)='login()'>Login</button>
+
+      <!-- <div *ngIf="statusCode==404">Invalid Username</div> -->
+
+      <span class="psw"> <a href="/signup">Not a User? Register!</a></span>
+    </div>
+
+  </form>
+</div>

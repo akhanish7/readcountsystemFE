@@ -1,0 +1,9 @@
+.container {
+  background-color: gray;
+}
+
+.ul {
+  background-color: darkgray;
+  align-items: center;
+  justify-content: center;
+}
