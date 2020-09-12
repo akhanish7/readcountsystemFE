@@ -15,6 +15,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class StoryComponent implements OnInit {
   story: Story;
+  title: string;
+  content: string;
+  readCount: number;
+
   activeUsers: number;
 
   constructor(
@@ -32,6 +36,9 @@ export class StoryComponent implements OnInit {
       .subscribe(
         (story) => {
           this.story = story;
+          this.title = this.story.title;
+          this.content = this.story.content;
+          this.readCount = this.story.readCount;
           this.activeUsers = this.socketService.activeUser;
           console.log(this.activeUsers);
         },

@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,7 +29,7 @@ export class StoriesService {
       'x-access-key': this.accessToken,
     });
     let options = { headers: headers };
-    return this.http.get(`http://localhost:7777/story/${id}`, options);
+    return this.http.get(`${environment.URL}${id}`, options);
   }
 
   async getaccessToken() {
@@ -45,6 +46,6 @@ export class StoriesService {
       'x-access-key': this.accessToken,
     });
     let options = { headers: headers };
-    return this.http.get('http://localhost:7777/story', options);
+    return this.http.get(`${environment.URL}story`, options);
   }
 }
