@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Story } from './../../story';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import {Users} from '../../users';
+
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 @Injectable({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class StoriesService {
   story: Story;
   accessToken: string;
-  // userData:Users;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -30,6 +30,7 @@ export class StoriesService {
     let options = { headers: headers };
     return this.http.get(`http://localhost:7777/story/${id}`, options);
   }
+
   async getaccessToken() {
     await (this.accessToken = sessionStorage.getItem('x-access-key'));
   }

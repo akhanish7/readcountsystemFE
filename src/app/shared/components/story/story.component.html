@@ -1,6 +1,14 @@
-<div *ngFor="let item of story | keyvalue">
-  <!-- {{item | json }} -->
-  <!-- Object Key:{{item.key}} and Object Value:{{item.value}} -->
-  <h1>{{item.value}}</h1>
-  <h3>{{item.value}}</h3>
-</div>
+<div class="position">
+  <div *ngFor="let item of story | keyvalue | slice:1 ">
+    <!-- {{item | json }} -->
+    <!-- Object Key:{{item.key}} and Object Value:{{item.value}} -->
+    <!-- <h1>{{item.key | uppercase}}</h1>
+    <h3>{{item.value}}</h3> -->
+
+    <ul>
+      <li>
+        <h1>{{item.key | uppercase}}</h1><br>
+        <p>{{item.value}}</p>
+      </li>
+    </ul>
+  </div>

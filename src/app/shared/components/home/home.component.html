@@ -1,3 +1,9 @@
-<div class="container" *ngFor="let story of stories" (click)="getStory(story._id)">
-  {{story.title}}
+<h1 class="pos"><b>Title</b></h1>
+<div class="position">
+  <div *ngFor="let story of stories" (click)="getStory(story._id)">
+
+    <ul>
+      <li>{{story.title}}</li>
+    </ul>
+  </div>
 </div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from '../../../story';
 import { StoriesService } from '../../services/stories.service';
-import { Observable } from 'rxjs';
+import { SocketIOService } from '../../services/socket-io.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -13,14 +14,17 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./story.component.css'],
 })
 export class StoryComponent implements OnInit {
-  // story: Story;
   story: Story;
+  activeUsers: number;
 
   constructor(
     private storyService: StoriesService,
     public activatedRoute: ActivatedRoute,
-    public router: Router
-  ) {}
+    public router: Router,
+    private socketService: SocketIOService
+  ) {
+    this.getActiveUsers();
+  }
 
   getStory() {
     this.storyService
@@ -28,6 +32,8 @@ export class StoryComponent implements OnInit {
       .subscribe(
         (story) => {
           this.story = story;
+          this.activeUsers = this.socketService.activeUser;
+          console.log(this.activeUsers);
         },
         (error) => {
           if (error instanceof HttpErrorResponse) {
@@ -47,6 +53,10 @@ export class StoryComponent implements OnInit {
           return throwError(error);
         }
       );
+  }
+
+  getActiveUsers() {
+    this.socketService.setupSocketConnection();
   }
 
   ngOnInit(): void {

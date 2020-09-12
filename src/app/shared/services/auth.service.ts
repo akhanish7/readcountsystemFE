@@ -5,8 +5,6 @@ import { Users } from '../../users';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// import 'rxjs/add/operator/catch';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -27,12 +25,13 @@ export class AuthService {
   }
 
   signUpUser(
+    url: string,
     username: string,
     email: string,
     password: string
   ): Observable<any> {
     return this.http.post(
-      'http://localhost:7777/signup',
+      url,
       {
         username: username,
         email: email,

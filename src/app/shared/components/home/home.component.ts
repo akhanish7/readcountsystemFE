@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { Router } from '@angular/router';
 import { StoriesService } from '../../services/stories.service';
 import { throwError } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,18 +12,13 @@ import { throwError } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   stories: any;
-  url: string = 'http://localhost:7777/story';
+  url: string = `${environment.URL}/story`;
 
   async getStory(id: string) {
     this.router.navigateByUrl(`/story/${id}`);
   }
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private router: Router,
-    private storyService: StoriesService
-  ) {}
+  constructor(private router: Router, private storyService: StoriesService) {}
 
   getStories() {
     this.storyService.getStories().subscribe(

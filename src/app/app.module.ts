@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from './shared/services/auth.service';
 import { StoriesService } from './shared/services/stories.service';
+import { SocketIOService } from './shared/services/socket-io.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { StoriesService } from './shared/services/stories.service';
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [AuthService, StoriesService],
+  providers: [AuthService, StoriesService, SocketIOService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
