@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { StoriesService } from '../../services/stories.service';
+import { throwError } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,15 +18,7 @@ export class HomeComponent implements OnInit {
   url: string = 'http://localhost:7777/story';
 
   async getStory(id: string) {
-    await this.storyService.getStory(id).subscribe((story) => {
-      // console.log(story);
-      this.storyService.story = story;
-
-      // this.router.navigateByUrl(`/story/${id}`);
-      this.router.navigateByUrl(`/story/${id}`, {
-        state: { hello: this.storyService.story },
-      });
-    });
+    this.router.navigateByUrl(`/story/${id}`);
   }
 
   constructor(
@@ -31,9 +28,32 @@ export class HomeComponent implements OnInit {
     private storyService: StoriesService
   ) {}
 
+  getStories() {
+    this.storyService.getStories().subscribe(
+      (res) => {
+        this.stories = res;
+      },
+      (error) => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.error instanceof ErrorEvent) {
+            console.error('Error Event');
+          } else {
+            console.log(`error status : ${error.status} ${error.statusText}`);
+            switch (error.status) {
+              case 403: //Wrong Token
+                this.router.navigateByUrl('/');
+                break;
+            }
+          }
+        } else {
+          console.error(error);
+        }
+        return throwError(error);
+      }
+    );
+  }
+
   ngOnInit(): void {
-    this.storyService.getStories().subscribe((res) => {
-      this.stories = res;
-    });
+    this.getStories();
   }
 }

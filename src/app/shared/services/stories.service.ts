@@ -4,33 +4,46 @@ import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import {Users} from '../../users';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class StoriesService {
   story: Story;
+  accessToken: string;
   // userData:Users;
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    public router: Router
+  ) {}
 
   getStory(id: string): Observable<any> {
-    let accessToken = this.authService.res.accessToken;
+    this.getaccessToken();
+    if (!this.accessToken) {
+      this.router.navigateByUrl('/');
+    }
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-access-token': accessToken,
+      'x-access-key': this.accessToken,
     });
     let options = { headers: headers };
     return this.http.get(`http://localhost:7777/story/${id}`, options);
-    // return this.http.get(`http://localhost:7777/story/${id}`);
+  }
+  async getaccessToken() {
+    await (this.accessToken = sessionStorage.getItem('x-access-key'));
   }
 
-  getStories() {
-    let accessToken = this.authService.res.accessToken;
+  getStories(): Observable<any> {
+    this.getaccessToken();
+    if (!this.accessToken) {
+      this.router.navigateByUrl('/');
+    }
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-access-token': accessToken,
+      'x-access-key': this.accessToken,
     });
     let options = { headers: headers };
     return this.http.get('http://localhost:7777/story', options);
-    // return this.http.get('http://localhost:7777/story');
   }
 }
