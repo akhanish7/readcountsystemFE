@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Story } from '../../../story';
 import { StoriesService } from '../../services/stories.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-story',
@@ -12,22 +14,42 @@ import { map } from 'rxjs/operators';
 })
 export class StoryComponent implements OnInit {
   // story: Story;
-  story: any;
-  state: Observable<object>;
+  story: Story;
 
   constructor(
     private storyService: StoriesService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public router: Router
   ) {}
 
+  getStory() {
+    this.storyService
+      .getStory(this.activatedRoute.snapshot.params.id)
+      .subscribe(
+        (story) => {
+          this.story = story;
+        },
+        (error) => {
+          if (error instanceof HttpErrorResponse) {
+            if (error.error instanceof ErrorEvent) {
+              console.error('Error Event');
+            } else {
+              console.log(`error status : ${error.status} ${error.statusText}`);
+              switch (error.status) {
+                case 403: //Wrong Token
+                  this.router.navigateByUrl('/');
+                  break;
+              }
+            }
+          } else {
+            console.error('some thing else happened');
+          }
+          return throwError(error);
+        }
+      );
+  }
+
   ngOnInit(): void {
-    // this.state$ = this.activatedRoute.paramMap.pipe(
-    //   map(() => {
-    //     console.log(window.history.state);
-    //   })
-    // );
-    this.state = window.history.state.hello;
-    console.log(this.state);
-    console.log(typeof this.state);
+    this.getStory();
   }
 }
