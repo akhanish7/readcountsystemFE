@@ -11,9 +11,9 @@ export class SocketIOService {
   socketConnectionUrl: string = 'http://localhost:7777';
   constructor() {}
 
-  async setupSocketConnection() {
+  setupSocketConnection() {
     this.socket = io(this.socketConnectionUrl);
-    await this.socket.on('counter', (data: any) => {
+    this.socket.on('counter', (data: any) => {
       this.activeUser = data.count;
     });
   }

@@ -20,7 +20,9 @@
     </ul> -->
 <!-- </div> -->
 <div class="position"><b>{{this.title}}</b></div>
-
+<div *ngIf="activeUsers">
+  <p>{{activeUsers}}</p>
+</div>
 
 <!-- <div class="box">
   <div class="row">
@@ -48,12 +50,18 @@
             <h1>Content</h1>
           </span>
           <p>{{this.content}}</p>
+
           <!-- <span class="card-title">
             <h1>Read Count</h1>
           </span>
           <p>{{this.readCount}}</p> -->
         </div>
       </div>
+
     </div>
   </div>
 </div>
+
+
+
+<div class="div2">This div is bigger (width is also 300px and height is 100px).</div>

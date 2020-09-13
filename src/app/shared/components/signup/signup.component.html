@@ -22,6 +22,9 @@
       <p>Minimum 8 characters</p><br>
     </div>
 
+    <div *ngIf="!passwordMatch" style="color:red">
+      <p>Password Mismatch</p><br>
+    </div>
 
 
     <div class="clearfix">
