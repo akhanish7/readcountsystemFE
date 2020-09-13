@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<form style="border:1px solid #ccc,">
+  <div class="container">
+    <div *ngIf="titleExist" style="background-color: red;">
+
+      <h1>Title Already Exist</h1>
+    </div>
+
+    <div *ngIf="response" style="background-color: green;">
+      <h1>{{message.message}}</h1>
+
+    </div>
+
+
+    <h1>Post Story</h1>
+    <hr>
+    <label for="email"><b>Title</b></label>
+    <input type="text" placeholder="Enter Title" [(ngModel)]="title" name="username" required>
+
+    <label for="email"><b>Content</b></label>
+    <input type="text" placeholder="Enter Content" [(ngModel)]="content" name="email" required>
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn" (click)="postStory()">Post</button>
+    </div>
+  </div>
+</form>

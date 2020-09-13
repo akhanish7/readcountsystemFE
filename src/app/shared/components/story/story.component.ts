@@ -38,9 +38,8 @@ export class StoryComponent implements OnInit {
           this.story = story;
           this.title = this.story.title;
           this.content = this.story.content;
-          this.readCount = this.story.readCount;
-          this.activeUsers = this.socketService.activeUser;
-          console.log(this.activeUsers);
+          // this.readCount = this.story.readCount;
+          // this.activeUsers = this.socketService.activeUser;
         },
         (error) => {
           if (error instanceof HttpErrorResponse) {

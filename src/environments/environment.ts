@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // URL: 'http://localhost:7777',
-  URL: 'https://readcountsystem-fe.herokuapp.com',
+  URL: 'http://localhost:7777',
+  // URL: 'https://readcountsystem-fe.herokuapp.com',
 };
 
 /*

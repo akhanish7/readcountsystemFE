@@ -29,7 +29,7 @@ export class StoriesService {
       'x-access-key': this.accessToken,
     });
     let options = { headers: headers };
-    return this.http.get(`${environment.URL}${id}`, options);
+    return this.http.get(`${environment.URL}/story/${id}`, options);
   }
 
   async getaccessToken() {
@@ -46,6 +46,27 @@ export class StoriesService {
       'x-access-key': this.accessToken,
     });
     let options = { headers: headers };
-    return this.http.get(`${environment.URL}story`, options);
+    return this.http.get(`${environment.URL}/story`, options);
+  }
+
+  postStory(title: string, content: string): Observable<any> {
+    this.getaccessToken();
+    if (!this.accessToken) {
+      this.router.navigateByUrl('/');
+    }
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-key': this.accessToken,
+    });
+    console.log(this.accessToken);
+    let options = { headers: headers };
+    return this.http.post(
+      `${environment.URL}/poststory`,
+      {
+        title: title,
+        content: content,
+      },
+      options
+    );
   }
 }

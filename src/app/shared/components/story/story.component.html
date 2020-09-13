@@ -1,3 +1,10 @@
+<app-header></app-header>
+
+
+
+
+
+
 <!-- <div class="position">
   <div *ngFor="let item of story | keyvalue | slice:1 ">
     <!-- {{item | json }} -->
@@ -12,7 +19,7 @@
       </li>
     </ul> -->
 <!-- </div> -->
-<div class="position"><b>DETAILS</b></div>
+<div class="position"><b>{{this.title}}</b></div>
 
 
 <!-- <div class="box">
@@ -38,17 +45,13 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">
-            <h1>Title</h1>
-          </span>
-          <p>{{this.title}}</p>
-          <span class="card-title">
             <h1>Content</h1>
           </span>
           <p>{{this.content}}</p>
-          <span class="card-title">
+          <!-- <span class="card-title">
             <h1>Read Count</h1>
           </span>
-          <p>{{this.readCount}}</p>
+          <p>{{this.readCount}}</p> -->
         </div>
       </div>
     </div>

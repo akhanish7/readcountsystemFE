@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from './shared/services/auth.service';
 import { StoriesService } from './shared/services/stories.service';
 import { SocketIOService } from './shared/services/socket-io.service';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { PoststoryComponent } from './shared/components/poststory/poststory.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { SocketIOService } from './shared/services/socket-io.service';
     SignupComponent,
     HomeComponent,
     StoryComponent,
+    HeaderComponent,
+    PoststoryComponent,
   ],
   imports: [
     BrowserModule,
