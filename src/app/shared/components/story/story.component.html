@@ -1,6 +1,67 @@
-<div *ngFor="let item of state | keyvalue">
-  <!-- {{item | json }} -->
-  <!-- Object Key:{{item.key}} and Object Value:{{item.value}} -->
-  <h1>{{item.value}}</h1>
-  <h3>{{item.value}}</h3>
+<app-header></app-header>
+
+
+
+
+
+
+<!-- <div class="position">
+  <div *ngFor="let item of story | keyvalue | slice:1 ">
+    <!-- {{item | json }} -->
+<!-- Object Key:{{item.key}} and Object Value:{{item.value}} -->
+<!-- <h1>{{item.key | uppercase}}</h1>
+    <h3>{{item.value}}</h3> -->
+
+<!-- <ul>
+      <li>
+        <h1>{{item.key | uppercase}}</h1><br>
+        <p>{{item.value}}</p>
+      </li>
+    </ul> -->
+<!-- </div> -->
+<div class="position"><b>{{this.title}}</b></div>
+<div *ngIf="activeUsers">
+  <p>{{activeUsers}}</p>
 </div>
+
+<!-- <div class="box">
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <h1>Title</h1>
+        <p>{{this.title}}</p>
+        <h1>Content</h1>
+        <p>{{this.content}}</p>
+        <h1>Read Count</h1>
+        <p>{{this.readCount}}</p>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container">
+  <div class="row valign-wrapper">
+    <div class="col s6 offset-s3 valign">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">
+            <h1>Content</h1>
+          </span>
+          <p>{{this.content}}</p>
+
+          <!-- <span class="card-title">
+            <h1>Read Count</h1>
+          </span>
+          <p>{{this.readCount}}</p> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="div2">This div is bigger (width is also 300px and height is 100px).</div>

@@ -1,9 +1,36 @@
-.container {
-  background-color: gray;
+ul {
+  background: lightblue;
+  padding: 20px;
+  min-width: max-content;
+  max-width: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-radius: 15px 50px 30px;
 }
 
-.ul {
-  background-color: darkgray;
-  align-items: center;
-  justify-content: center;
+ul:hover {
+  color: lightseagreen;
+  border-radius: 40px;
+}
+
+ul li {
+  background: lightblue;
+  padding: 5px;
+  display: inline;
+  cursor: pointer;
+}
+
+ul li:hover {
+  color: lightseagreen;
+  font-size: large;
+}
+
+.position {
+  align-content: center;
+}
+
+.pos {
+  text-align: center;
+  margin-top: 2%;
+  text-decoration-thickness: 20px;
 }
