@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Users } from '../../../users';
 import { throwError } from 'rxjs';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,12 +18,8 @@ export class LoginComponent implements OnInit {
   statusCode: any;
   usernameValid: boolean = true;
   passwordValid: boolean = true;
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private authService: AuthService
-  ) {}
-  url = 'http://localhost:7777/signin';
+  constructor(private router: Router, private authService: AuthService) {}
+  url = `${environment.URL}/signin`;
   saveAccessToken() {
     sessionStorage.setItem('x-access-key', this.res.accessToken);
   }
@@ -43,9 +39,7 @@ export class LoginComponent implements OnInit {
         (error) => {
           if (error instanceof HttpErrorResponse) {
             if (error.error instanceof ErrorEvent) {
-              console.error('Error Event');
             } else {
-              console.log(`error status : ${error.status} ${error.statusText}`);
               switch (error.status) {
                 case 404: //Invalid User
                   this.usernameValid = false;
@@ -55,8 +49,6 @@ export class LoginComponent implements OnInit {
                   break;
               }
             }
-          } else {
-            console.error('some thing else happened');
           }
           return throwError(error);
         }
